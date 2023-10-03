@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 using api.Database;
@@ -198,6 +199,11 @@ builder.Services.AddSwaggerGen(c =>
             Array.Empty<string>()
         },
     });
+
+    // Set the comments path for the Swagger JSON and UI.
+    // using System.Reflection;
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 }
 );
 
